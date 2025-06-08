@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://gii4vx1why54"]
+
+[ext_resource type="Script" uid="uid://8b4yxywaupdc" path="res://scenes/table/Table.gd" id="1_2qbrq"]
+[ext_resource type="PackedScene" uid="uid://bhth8isxoyqen" path="res://scenes/cursor/cursor.tscn" id="2_oeslb"]
+[ext_resource type="PackedScene" uid="uid://djg67cdhw52p8" path="res://scenes/card/card.tscn" id="2_pdx1c"]
+[ext_resource type="Script" uid="uid://6lql2taxl35o" path="res://resources/CardData.gd" id="3_fm2oy"]
+[ext_resource type="Script" uid="uid://kbk43o8iun5o" path="res://scenes/table/Deck.gd" id="5_inia7"]
+
+[sub_resource type="Resource" id="Resource_oeslb"]
+script = ExtResource("3_fm2oy")
+rank = &"K"
+suit = &"Hearts"
+metadata/_custom_type_script = "uid://6lql2taxl35o"
+
+[node name="Table" type="Node"]
+script = ExtResource("1_2qbrq")
+
+[node name="TableImage" type="ColorRect" parent="."]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.113725, 0.494118, 0.321569, 1)
+
+[node name="Cursor" parent="." instance=ExtResource("2_oeslb")]
+
+[node name="CommunityCards" type="Node" parent="."]
+
+[node name="Card" parent="CommunityCards" instance=ExtResource("2_pdx1c")]
+position = Vector2(576, 320)
+scale = Vector2(2, 2)
+card_data = SubResource("Resource_oeslb")
+
+[node name="Deck" type="Node" parent="."]
+script = ExtResource("5_inia7")
+
+[node name="BetManager" type="Node" parent="."]

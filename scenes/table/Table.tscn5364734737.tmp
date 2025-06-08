@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://gii4vx1why54"]
+
+[ext_resource type="Script" uid="uid://8b4yxywaupdc" path="res://scenes/table/Table.gd" id="1_2qbrq"]
+[ext_resource type="PackedScene" uid="uid://bhth8isxoyqen" path="res://scenes/cursor/cursor.tscn" id="2_oeslb"]
+[ext_resource type="PackedScene" uid="uid://pruly85hy1ui" path="res://scenes/player/Player.tscn" id="4_oeslb"]
+[ext_resource type="Script" uid="uid://dc20bumlbbn73" path="res://scenes/table/Community.gd" id="5_11trc"]
+[ext_resource type="Script" uid="uid://kbk43o8iun5o" path="res://scenes/table/Dealer.gd" id="5_inia7"]
+
+[node name="Table" type="Node" node_paths=PackedStringArray("players")]
+script = ExtResource("1_2qbrq")
+players = [NodePath("Player")]
+
+[node name="TableImage" type="ColorRect" parent="."]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.113725, 0.494118, 0.321569, 1)
+
+[node name="Cursor" parent="." instance=ExtResource("2_oeslb")]
+
+[node name="CommunityCards" type="Node" parent="."]
+
+[node name="Dealer" type="Node" parent="."]
+script = ExtResource("5_inia7")
+
+[node name="BetManager" type="Node" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("4_oeslb")]
+position = Vector2(576, 576)
+
+[node name="Community" type="Node2D" parent="."]
+position = Vector2(320, 320)
+script = ExtResource("5_11trc")
+
+[node name="Seat0" type="Node2D" parent="."]
+position = Vector2(576, 576)
+
+[node name="Seat1" type="Node2D" parent="."]
+position = Vector2(64, 320)
+
+[node name="Seat2" type="Node2D" parent="."]
+position = Vector2(1024, 320)

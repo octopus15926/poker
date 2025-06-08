@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhth8isxoyqen"]
+
+[ext_resource type="Texture2D" uid="uid://ty274lqn3dox" path="res://scenes/cursor/tile_0199.png" id="1_hu3fh"]
+[ext_resource type="Script" uid="uid://cyiw1agujpcqj" path="res://scenes/cursor/cursor.gd" id="2_ndevg"]
+
+[node name="Cursor" type="Sprite2D"]
+z_index = 999
+z_as_relative = false
+texture = ExtResource("1_hu3fh")
+script = ExtResource("2_ndevg")

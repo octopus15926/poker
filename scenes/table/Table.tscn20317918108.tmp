@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://gii4vx1why54"]
+
+[ext_resource type="Script" uid="uid://8b4yxywaupdc" path="res://scenes/table/Table.gd" id="1_2qbrq"]
+[ext_resource type="PackedScene" uid="uid://bhth8isxoyqen" path="res://scenes/cursor/cursor.tscn" id="2_oeslb"]
+[ext_resource type="PackedScene" uid="uid://pruly85hy1ui" path="res://scenes/player/Player.tscn" id="4_oeslb"]
+[ext_resource type="Script" uid="uid://dc20bumlbbn73" path="res://scenes/table/Community.gd" id="5_11trc"]
+[ext_resource type="PackedScene" uid="uid://cuffuqurpe3qw" path="res://scenes/seat/seat.tscn" id="5_il6sf"]
+[ext_resource type="Script" uid="uid://kbk43o8iun5o" path="res://scenes/table/Dealer.gd" id="5_inia7"]
+[ext_resource type="Script" uid="uid://dvgyha6nlj0cf" path="res://scenes/table/Seats.gd" id="5_qg66j"]
+[ext_resource type="Texture2D" uid="uid://dcpq2kq6snrnp" path="res://scenes/player/banana.png" id="7_hhuc6"]
+[ext_resource type="Texture2D" uid="uid://0hr6xc454il5" path="res://scenes/player/orange.png" id="8_qg66j"]
+[ext_resource type="Texture2D" uid="uid://cnxoaw160l2lg" path="res://scenes/player/cherries.png" id="9_iyajm"]
+[ext_resource type="Texture2D" uid="uid://diov5j71kp2t0" path="res://scenes/player/grapes.png" id="10_n6c6m"]
+
+[node name="Table" type="Node"]
+script = ExtResource("1_2qbrq")
+
+[node name="TableImage" type="ColorRect" parent="."]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.113725, 0.494118, 0.321569, 1)
+
+[node name="Cursor" parent="." instance=ExtResource("2_oeslb")]
+
+[node name="Dealer" type="Node" parent="."]
+script = ExtResource("5_inia7")
+
+[node name="BetManager" type="Node" parent="."]
+
+[node name="Community" type="Node2D" parent="."]
+position = Vector2(320, 320)
+script = ExtResource("5_11trc")
+
+[node name="Seats" type="Node" parent="."]
+script = ExtResource("5_qg66j")
+
+[node name="Seat1" parent="Seats" instance=ExtResource("5_il6sf")]
+position = Vector2(1088, 320)
+
+[node name="Seat2" parent="Seats" instance=ExtResource("5_il6sf")]
+position = Vector2(832, 576)
+
+[node name="Seat3" parent="Seats" instance=ExtResource("5_il6sf")]
+position = Vector2(320, 576)
+
+[node name="Seat4" parent="Seats" instance=ExtResource("5_il6sf")]
+position = Vector2(64, 320)
+
+[node name="Players" type="Node" parent="."]
+
+[node name="Grapes" parent="Players" instance=ExtResource("4_oeslb")]
+position = Vector2(1088, 320)
+player_name = &"Grapes"
+player_image = ExtResource("10_n6c6m")
+
+[node name="Orange" parent="Players" instance=ExtResource("4_oeslb")]
+position = Vector2(320, 576)
+player_name = &"Orange"
+player_image = ExtResource("8_qg66j")
+
+[node name="Banana" parent="Players" instance=ExtResource("4_oeslb")]
+position = Vector2(64, 320)
+player_image = ExtResource("7_hhuc6")
+
+[node name="Cherry" parent="Players" instance=ExtResource("4_oeslb")]
+position = Vector2(832, 576)
+player_name = &"Cherry"
+player_image = ExtResource("9_iyajm")

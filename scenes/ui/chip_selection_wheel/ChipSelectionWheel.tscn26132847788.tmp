@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck7peqwaa5nhi"]
+
+[ext_resource type="Script" uid="uid://bbgt4sycv0lej" path="res://scenes/ui/chip_selection_wheel/ChipSelectionWheel.gd" id="1_ejagh"]
+[ext_resource type="PackedScene" uid="uid://h4vwc3je7bc6" path="res://scenes/ui/ui_chip/UIchip.tscn" id="1_fj5xa"]
+
+[node name="ChipSelectionWheel" type="Node2D"]
+z_index = 101
+script = ExtResource("1_ejagh")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+z_index = 101
+offset_left = -69.0
+offset_top = -69.0
+offset_right = 69.0
+offset_bottom = 69.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="UIChip" parent="GridContainer" instance=ExtResource("1_fj5xa")]
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+
+[node name="UIChip1" parent="GridContainer" instance=ExtResource("1_fj5xa")]
+layout_mode = 2
+value = 100
+color = Color(0, 0, 0.784314, 1)
+
+[node name="UIChip2" parent="GridContainer" instance=ExtResource("1_fj5xa")]
+layout_mode = 2
+value = 200
+color = Color(0.858824, 0.231373, 0, 1)
+
+[node name="UIChip3" parent="GridContainer" instance=ExtResource("1_fj5xa")]
+layout_mode = 2
+value = 500
+color = Color(0.794811, 0.0164376, 0.760993, 1)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://pruly85hy1ui"]
+
+[ext_resource type="Script" uid="uid://cy3shjf6geft2" path="res://scenes/player/Player.gd" id="1_dovo2"]
+[ext_resource type="PackedScene" uid="uid://de3rrnd8ccct6" path="res://scenes/player/Hand.tscn" id="2_gmlin"]
+[ext_resource type="Texture2D" uid="uid://dcpq2kq6snrnp" path="res://scenes/player/textures/banana.png" id="3_4kuee"]
+[ext_resource type="Texture2D" uid="uid://1sv68kur66fi" path="res://scenes/player/player_highlight.png" id="3_524rm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_524rm"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_dovo2")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 0.506534, 0.998687, 1)
+custom_minimum_size = Vector2(64, 64)
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_524rm")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_4kuee")
+
+[node name="PlayerHighlight" type="Sprite2D" parent="."]
+modulate = Color(0.832856, 0.132161, 0, 1)
+texture = ExtResource("3_524rm")
+
+[node name="Hand" parent="." instance=ExtResource("2_gmlin")]
+
+[node name="NamePlate" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(70, 25)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = 32.0
+offset_right = 35.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="CenterContainer" type="CenterContainer" parent="NamePlate"]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="NamePlate/CenterContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 6
+text = "Banana"
+horizontal_alignment = 1
+vertical_alignment = 1

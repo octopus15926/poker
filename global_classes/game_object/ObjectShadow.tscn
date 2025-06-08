@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm4g65kv31o1v"]
+
+[ext_resource type="Script" uid="uid://bs7ey6n7ise2n" path="res://global_classes/game_object/ObjectShadow.gd" id="2_wspyr"]
+
+[node name="Shadow" type="Sprite2D"]
+modulate = Color(0.071, 0.071, 0.071, 0)
+show_behind_parent = true
+region_enabled = true
+region_rect = Rect2(560, 62, 42, 60)
+script = ExtResource("2_wspyr")

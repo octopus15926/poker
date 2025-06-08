@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcff0mqdywf0y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtcvk"]
+size = Vector2(42, 60)
+
+[node name="ClickBox" type="Area2D"]
+
+[node name="ClickBoxCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vtcvk")

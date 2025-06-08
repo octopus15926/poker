@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://djg67cdhw52p8"]
+
+[ext_resource type="Script" uid="uid://2713v0b0bk74" path="res://scenes/card/Card.gd" id="2_6u4wf"]
+[ext_resource type="PackedScene" uid="uid://dcff0mqdywf0y" path="res://global_classes/game_object/click_box.tscn" id="2_imta7"]
+
+[node name="Card" type="Sprite2D"]
+region_enabled = true
+script = ExtResource("2_6u4wf")
+
+[node name="ClickBox" parent="." instance=ExtResource("2_imta7")]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://djg67cdhw52p8"]
+
+[ext_resource type="Script" uid="uid://2713v0b0bk74" path="res://scenes/card/Card.gd" id="2_6u4wf"]
+[ext_resource type="Script" uid="uid://6lql2taxl35o" path="res://resources/CardData.gd" id="2_ktuci"]
+[ext_resource type="Texture2D" uid="uid://dkbrb8r6uagcf" path="res://assets/cards/cards_large_1px_spacing-export.png" id="3_g65cd"]
+
+[sub_resource type="Resource" id="Resource_6u4wf"]
+script = ExtResource("2_ktuci")
+rank = &""
+suit = &""
+metadata/_custom_type_script = "uid://6lql2taxl35o"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vtcvk"]
+size = Vector2(42, 60)
+
+[node name="Card" type="Sprite2D"]
+region_enabled = true
+script = ExtResource("2_6u4wf")
+card_data = SubResource("Resource_6u4wf")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.071, 0.071, 0.071, 0.62)
+show_behind_parent = true
+position = Vector2(-1, 1)
+texture = ExtResource("3_g65cd")
+region_enabled = true
+region_rect = Rect2(560, 62, 42, 60)
+
+[node name="ClickBox" type="Area2D" parent="."]
+
+[node name="ClickBoxCollider" type="CollisionShape2D" parent="ClickBox"]
+shape = SubResource("RectangleShape2D_vtcvk")
+
+[connection signal="card_released" from="." to="." method="_on_card_released"]
+[connection signal="mouse_entered" from="ClickBox" to="." method="_on_click_box_mouse_entered"]
+[connection signal="mouse_exited" from="ClickBox" to="." method="_on_click_box_mouse_exited"]

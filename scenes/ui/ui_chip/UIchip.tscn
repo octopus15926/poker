@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://h4vwc3je7bc6"]
+
+[ext_resource type="Texture2D" uid="uid://ktc8w0n7vfh8" path="res://assets/chips/chip.png" id="1_811a0"]
+[ext_resource type="Script" uid="uid://cr0oamjt2vrkm" path="res://scenes/ui/ui_chip/UIchip.gd" id="2_46duh"]
+
+[node name="UIchip" type="TextureRect"]
+self_modulate = Color(3.27289e-06, 0.837392, 0.951478, 1)
+z_index = 100
+mouse_filter = 0
+texture = ExtResource("1_811a0")
+script = ExtResource("2_46duh")
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 21.0
+offset_right = 61.0
+offset_bottom = 44.0
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.0605303, 0.0605303, 0.0605303, 1)
+theme_override_constants/outline_size = 6
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Highlight" type="TextureRect" parent="."]
+visible = false
+show_behind_parent = true
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 66.0
+offset_bottom = 66.0
+texture = ExtResource("1_811a0")

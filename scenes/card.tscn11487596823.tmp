@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://djg67cdhw52p8"]
+
+[ext_resource type="Script" uid="uid://2713v0b0bk74" path="res://scenes/Card.gd" id="2_6u4wf"]
+[ext_resource type="Script" uid="uid://6lql2taxl35o" path="res://resources/CardData.gd" id="2_ktuci"]
+
+[sub_resource type="Resource" id="Resource_6u4wf"]
+script = ExtResource("2_ktuci")
+rank = 2
+suit = 0
+atlas_region = Rect2(0, 0, 0, 0)
+color = 0
+metadata/_custom_type_script = "uid://6lql2taxl35o"
+
+[node name="Card" type="Sprite2D"]
+region_enabled = true
+script = ExtResource("2_6u4wf")
+card_data = SubResource("Resource_6u4wf")
