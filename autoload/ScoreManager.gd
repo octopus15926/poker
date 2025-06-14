@@ -104,10 +104,10 @@ func read_hand(cards: Array) -> Hands:
 	print("Mapping cards")
 	for card in cards:
 		if !hand_map.has(card.rank):
-			print("Additional instance of " + str(card.rank))
+			print("First instance of " + str(card.rank))
 			hand_map[card.rank] = 1
 		else:
-			print("First instance of " + str(card.rank))
+			print("additional instance of " + str(card.rank))
 			hand_map[card.rank] += 1
 	var pair: int = 0
 	var three_of_a_kind: int = 0
@@ -128,7 +128,7 @@ func read_hand(cards: Array) -> Hands:
 		print("Two pair detected")
 		return Hands.TWO_PAIR
 	elif pair == 1:
-		print("Pair detected!")
+		print("Final score is a Pair!")
 		return Hands.PAIR
 	print("Sorry, just a high card, kid.")
 	return Hands.HIGH_CARD
