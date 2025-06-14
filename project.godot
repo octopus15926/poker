@@ -20,7 +20,9 @@ config/icon="res://icon.svg"
 CardProperties="*res://autoload/CardProperties.gd"
 CardAtlasManager="*res://autoload/CardAtlasManager.gd"
 TurnManager="*res://autoload/TurnManager.gd"
-PlayerSpriteManager="*res://autoload/PlayerSpriteManager.gd"
+PlayerIconManager="*res://autoload/PlayerIconManager.gd"
+ScoreManager="*res://autoload/ScoreManager.gd"
+BetManager="*res://autoload/BetManager.gd"
 
 [display]
 
