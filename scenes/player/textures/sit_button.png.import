@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccju7swvcrc0s"
-path="res://.godot/imported/cherries.png-d9d4259fddc3446d8730bd7d51c7da04.ctex"
+uid="uid://cl0envielnew4"
+path="res://.godot/imported/sit_button.png-aebfda4e526c585a200b6b5a0c355b0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/textures/cherries.png"
-dest_files=["res://.godot/imported/cherries.png-d9d4259fddc3446d8730bd7d51c7da04.ctex"]
+source_file="res://scenes/player/textures/sit_button.png"
+dest_files=["res://.godot/imported/sit_button.png-aebfda4e526c585a200b6b5a0c355b0c.ctex"]
 
 [params]
 

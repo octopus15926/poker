@@ -20,6 +20,7 @@ func create_players(_number_of_players: int = 4) -> void:
 		var new_player = player.instantiate()
 		new_player.custom_init(player_name, "CPU")
 		players.append(new_player)
+		new_player.player_selected.connect(func(): _on_player_selected())
 	print(players)
 	TurnManager.set_turn_order(players)
 
@@ -38,3 +39,8 @@ func seat_players() -> void:
 		else:
 			continue
 	print("player keys after seating: " + str(player_keys))
+
+
+func _on_player_selected() -> void:
+	for key in TurnManager.turn_map_keys:
+		TurnManager.turn_map.get(key).disable_sit_button()

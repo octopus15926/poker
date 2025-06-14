@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccju7swvcrc0s"
-path="res://.godot/imported/cherries.png-d9d4259fddc3446d8730bd7d51c7da04.ctex"
+uid="uid://cyvi6a4v5qprl"
+path="res://.godot/imported/player_outline.png-97ac09a5fc195c0c23f10be655bbadbf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/player/textures/cherries.png"
-dest_files=["res://.godot/imported/cherries.png-d9d4259fddc3446d8730bd7d51c7da04.ctex"]
+source_file="res://scenes/player/player_outline.png"
+dest_files=["res://.godot/imported/player_outline.png-97ac09a5fc195c0c23f10be655bbadbf.ctex"]
 
 [params]
 

@@ -2,14 +2,21 @@ class_name Player
 extends Node2D
 
 
+signal player_selected
+
+
 enum PlayerType { CPU, HUMAN }
 const CARD_SPACING_MULTIPLIER: Vector2 = Vector2(-50.0, -50.0)
 
 var sprite
 var name_label: Label
+var player_icon: CompressedTexture2D
+var player_outline: Sprite2D
+var player_background: Panel
+var sit_button: Button
+var hand: Node
 var player_name: StringName = &"Banana"
 var player_type: PlayerType = PlayerType.HUMAN
-var player_image: CompressedTexture2D
 var chips: int = 10000
 var chip_selection_wheel: PackedScene = preload("res://scenes/ui/chip_selection_wheel/ChipSelectionWheel.tscn")
 var chip: PackedScene = preload("res://scenes/chip/Chip.tscn")
@@ -19,23 +26,33 @@ var chip_wheel_open: bool = false
 func custom_init(i_player_name: StringName, i_player_type: StringName) -> void:
 	self.player_name = i_player_name
 	if i_player_type == &"CPU":
+		player_outline = $PlayerOutline
+		player_outline.set("self_modulate", PlayerIconManager.cpu_outline)
 		self.player_type = PlayerType.CPU
-	# TODO: Player image selection, for now set based on filler names
+	player_background = $PlayerBackground
 	match(i_player_name):
 		&"Banana":
-			player_image = PlayerSpriteManager.banana_sprite
+			player_icon = PlayerIconManager.banana_sprite
+			player_background.set("self_modulate", PlayerIconManager.banana_background)
 		&"Cherries":
-			player_image = PlayerSpriteManager.cherries_sprite
+			player_icon = PlayerIconManager.cherries_sprite
+			player_background.set("self_modulate", PlayerIconManager.cherries_background)
 		&"Grapes":
-			player_image = PlayerSpriteManager.grapes_sprite
+			player_icon = PlayerIconManager.grapes_sprite
+			player_background.set("self_modulate", PlayerIconManager.grapes_background)
 		&"Orange":
-			player_image = PlayerSpriteManager.orange_sprite
+			player_icon = PlayerIconManager.orange_sprite
+			player_background.set("self_modulate", PlayerIconManager.orange_background)
 		_:
-			player_image = PlayerSpriteManager.banana_sprite
-	sprite = $PlayerSprite
+			player_icon = PlayerIconManager.banana_sprite
+			player_background.set("self_modulate", PlayerIconManager.banana_background)
+	sprite = $PlayerIcon
 	name_label = $NamePlate/CenterContainer/NameLabel
 	name_label.set("text", self.player_name)
-	sprite.set("texture", player_image)
+	sprite.set("texture", player_icon)
+	sit_button = $SitButton
+	sit_button.pressed.connect(func(): _on_sit_button_pressed())
+	hand = $Hand
 
 
 func _input(event) -> void:
@@ -48,23 +65,19 @@ func _input(event) -> void:
 		chip_wheel_open = true
 
 
-func set_player_texture() -> void:
-	pass
-
-
 func pick_up_cards(cards: Array[Card]) -> void:
 	var total_card_width: float = 0.0
 	var card_gap: float = 0.0
 	for card in cards:
 		total_card_width += card.region_rect.size.x
-		$Hand.add_child(card)
+		hand.add_child(card)
 		card.position = global_position
 	card_gap = total_card_width / maxf(1.0, float(cards.size()) * 2.0)
 	total_card_width += card_gap
-	$Hand.get_child(0).position.x += position.x - 0.5 * total_card_width
-	$Hand.get_child(0).position.y -= total_card_width
-	$Hand.get_child(1).position.x += position.x + 0.5 * total_card_width
-	$Hand.get_child(1).position.y -= total_card_width
+	hand.get_child(0).position.x += position.x - 0.5 * total_card_width
+	hand.get_child(0).position.y -= total_card_width
+	hand.get_child(1).position.x += position.x + 0.5 * total_card_width
+	hand.get_child(1).position.y -= total_card_width
 
 
 func rotate_player(direction: StringName) -> void:
@@ -77,6 +90,21 @@ func rotate_player(direction: StringName) -> void:
 			rotate(1.5708)
 		_:
 			pass
+
+
+func disable_sit_button() -> void:
+	sit_button.visible = false
+
+
+func get_hand() -> Array:
+	if hand.get_children().size() == 2:
+		return hand.get_children()
+	return []
+
+
+func add_community_to_hand(community_cards: Array) -> void:
+	for card in community_cards:
+		hand.add_child(card)
 
 
 func _on_chip_wheel_selected(value: int) -> void:
@@ -93,3 +121,10 @@ func _on_chip_wheel_selected(value: int) -> void:
 
 func _on_chip_wheel_exited() -> void:
 	chip_wheel_open = false
+
+
+func _on_sit_button_pressed() -> void:
+	player_type = PlayerType.HUMAN
+	player_outline.set("self_modulate", PlayerIconManager.human_outline)
+	hand.flip_cards()
+	emit_signal("player_selected")

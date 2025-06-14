@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://8b4yxywaupdc" path="res://scenes/table/Table.gd" id="1_2qbrq"]
 [ext_resource type="Texture2D" uid="uid://dclwan3we4nrc" path="res://assets/tilemap/table_tilemap.png" id="2_il6sf"]
 [ext_resource type="PackedScene" uid="uid://bhth8isxoyqen" path="res://scenes/cursor/cursor.tscn" id="2_oeslb"]
-[ext_resource type="Texture2D" uid="uid://bt4r53yqdm7c4" path="res://assets/tilemap/outline.png" id="3_88bpn"]
 [ext_resource type="Script" uid="uid://dc20bumlbbn73" path="res://scenes/table/Community.gd" id="5_11trc"]
 [ext_resource type="PackedScene" uid="uid://cuffuqurpe3qw" path="res://scenes/seat/seat.tscn" id="5_il6sf"]
 [ext_resource type="Script" uid="uid://kbk43o8iun5o" path="res://scenes/table/Dealer.gd" id="5_inia7"]
@@ -22,8 +21,11 @@ texture_region_size = Vector2i(64, 64)
 1:2/0 = 0
 2:2/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_il6sf"]
+load_path = "res://.godot/imported/outline.png-ecb03b97a703c829adf2179e4be586a8.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5l6oy"]
-texture = ExtResource("3_88bpn")
+texture = SubResource("CompressedTexture2D_il6sf")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
@@ -54,8 +56,6 @@ tile_set = SubResource("TileSet_5l6oy")
 z_index = -99
 tile_map_data = PackedByteArray("AAAGAAQAAwAAAAIAAAAHAAQAAwABAAIAAAAIAAQAAwABAAIAAAAJAAQAAwABAAIAAAAKAAQAAwABAAIAAAALAAQAAwABAAIAAAAMAAQAAwACAAIAAAAGAAMAAwAAAAAAAAAHAAMAAwABAAAAAAAIAAMAAwABAAAAAAAJAAMAAwABAAAAAAAKAAMAAwABAAAAAAALAAMAAwABAAAAAAAMAAMAAwACAAAAAAA=")
 tile_set = SubResource("TileSet_5l6oy")
-
-[node name="BetManager" type="Node" parent="."]
 
 [node name="Community" type="Node2D" parent="."]
 position = Vector2(432, 256)
