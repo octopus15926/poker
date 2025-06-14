@@ -35,12 +35,16 @@ func _ready() -> void:
 	deal_community()
 	deal_community()
 	for key in TurnManager.turn_map_keys:
+		var player: Player = TurnManager.turn_map.get(key)
 		var community_cards: Array = community.get_children()
 		var player_hand: Array = TurnManager.turn_map.get(key).get_hand()
 		var hand_to_score: Array = community_cards + player_hand
 		print("Scoring " + str(TurnManager.turn_map.get(key).player_name))
 		print("A total of " + str(hand_to_score.size()) + " cards")
-		ScoreManager.score_hand(hand_to_score)
+		ScoreManager.score_hand(hand_to_score, player)
+	var winners: Array = ScoreManager.get_winning_hand()
+	for winner in winners:
+		winner.show_outline()
 
 
 func generate_card_list() -> void:

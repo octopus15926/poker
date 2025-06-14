@@ -1,10 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://djg67cdhw52p8"]
+[gd_scene load_steps=4 format=3 uid="uid://djg67cdhw52p8"]
 
 [ext_resource type="Script" uid="uid://2713v0b0bk74" path="res://scenes/card/Card.gd" id="2_6u4wf"]
 [ext_resource type="PackedScene" uid="uid://dcff0mqdywf0y" path="res://global_classes/game_object/click_box.tscn" id="2_imta7"]
+[ext_resource type="Texture2D" uid="uid://b4ox3jvi7n3gf" path="res://assets/tilemap/outline.png" id="3_vtcvk"]
 
 [node name="Card" type="Sprite2D"]
 region_enabled = true
 script = ExtResource("2_6u4wf")
 
 [node name="ClickBox" parent="." instance=ExtResource("2_imta7")]
+
+[node name="Outline" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(0.905532, 0.566556, 0.691384, 1)
+show_behind_parent = true
+scale = Vector2(0.23, 0.325)
+texture = ExtResource("3_vtcvk")

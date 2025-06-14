@@ -16,6 +16,7 @@ var suit: StringName
 var card_id: StringName
 var color: StringName = BLACK
 var is_face_up: bool = false
+var outline: Sprite2D
 
 
 func set_object_size() -> void:
@@ -37,8 +38,13 @@ func make_card_ready(new_card_data: CardData) -> void:
 		region_rect = CardAtlasManager.get_region_from_map(card_id)
 	else:
 		region_rect = CardAtlasManager.BLANK_CARD_REGION
-	
+	outline = $Outline
+
 
 func flip() -> void:
 	region_rect = CardAtlasManager.get_region_from_map(card_id)
 	is_face_up = true
+
+
+func show_outline() -> void:
+	outline.visible = true

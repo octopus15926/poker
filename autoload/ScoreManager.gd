@@ -1,7 +1,19 @@
 extends Node
 
 
-enum Hands { ROYAL_FLUSH, STRAIGHT_FLUSH, FOUR_OF_A_KIND, FULL_HOUSE, FLUSH, STRAIGHT, THREE_OF_A_KIND, TWO_PAIR, PAIR, HIGH_CARD, NONE }
+enum Hands { 
+	ROYAL_FLUSH, 
+	STRAIGHT_FLUSH, 
+	FOUR_OF_A_KIND, 
+	FULL_HOUSE, 
+	FLUSH, 
+	STRAIGHT, 
+	THREE_OF_A_KIND, 
+	TWO_PAIR, 
+	PAIR, 
+	HIGH_CARD, 
+	NONE
+	}
 
 const HAND_RANKINGS: Dictionary = {
 	Hands.ROYAL_FLUSH: 10,
@@ -18,6 +30,10 @@ const HAND_RANKINGS: Dictionary = {
 
 const ACE_LOW_STRAIGHT: Array = [14, 2, 3, 4, 5]
 const ROYAL_FLUSH: Array = [&"A", &"K", &"Q", &"J", &"10"]
+
+
+var player_score_map: Dictionary = {}
+var player_hand_map: Dictionary = {}
 
 
 func check_for_flush(cards: Array) -> Hands:
@@ -142,17 +158,34 @@ func get_sorted_ranks(cards: Array) -> Array:
 	return card_ranks
 
 
-func score_hand(cards: Array) -> void:
+func score_hand(cards: Array, player: Player) -> void:
 	print("\nScoring hand!")
 	var score: Hands = Hands.NONE
 	score = check_for_flush(cards)
 	if score == Hands.NONE:
 		if check_for_straight(cards):
 			score = Hands.STRAIGHT
-			print("Player scored a straight")
 			return
 		score = read_hand(cards)
-		print("\nPlayer scored: " + str(HAND_RANKINGS.get(score)))
+	print("\n" + player.player_name + " scored: " + str(HAND_RANKINGS.get(score)) + "\n")
+	map_hand_score(HAND_RANKINGS.get(score), cards, player)
+
+
+# TODO add player objects to the map instead of names so you can highlight all their cards
+func map_hand_score(hand_score: int, cards: Array, player: Player) -> void:
+	if player_hand_map.has(hand_score):
+		player_hand_map[hand_score] += cards
+	else:
+		player_hand_map[hand_score] = cards
+	if !player_score_map.has(hand_score):
+		player_score_map[hand_score] = [player]
+	else:
+		player_score_map[hand_score].append(player)
+
+func get_winning_hand() -> Array:
+	var player_hand_map_keys: Array = player_hand_map.keys()
+	player_hand_map_keys.sort()
+	return player_hand_map.get(player_hand_map_keys[-1])
 
 
 func convert_rank_stringname_to_int(rank: StringName) -> int:
