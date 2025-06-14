@@ -82,7 +82,7 @@ func _on_click_box_mouse_exited() -> void:
 
 
 func _on_click_box_input_event(_viewport, event, _shape_idx):
-	if event.is_action_pressed("left_click"):
+	if event.is_action_pressed("left_click") and selectable:
 		object_shadow.fade_in()
-	if event.is_action_released("left_click"):
+	if event.is_action_released("left_click") and selectable:
 		object_shadow.fade_out()

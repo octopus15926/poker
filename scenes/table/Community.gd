@@ -7,6 +7,7 @@ var last_card_x: int = 0
 func display_cards(cards: Array) -> void:
 	for card in cards:
 		add_child(card)
+		card.flip()
 		card.position.x += last_card_x
 		last_card_x += 88
 

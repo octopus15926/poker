@@ -15,7 +15,7 @@ var rank: StringName
 var suit: StringName
 var card_id: StringName
 var color: StringName = BLACK
-var is_face_up: bool = true
+var is_face_up: bool = false
 
 
 func set_object_size() -> void:
@@ -24,6 +24,7 @@ func set_object_size() -> void:
 
 
 func make_card_ready(new_card_data: CardData) -> void:
+	selectable = false
 	card_data = new_card_data
 	rank = card_data.rank
 	suit = card_data.suit
@@ -37,3 +38,7 @@ func make_card_ready(new_card_data: CardData) -> void:
 	else:
 		region_rect = CardAtlasManager.BLANK_CARD_REGION
 	
+
+func flip() -> void:
+	region_rect = CardAtlasManager.get_region_from_map(card_id)
+	is_face_up = true

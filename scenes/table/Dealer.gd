@@ -23,7 +23,8 @@ func run_a_game_of_poker() -> void:
 
 
 func take_bets() -> void:
-	pass
+	for key in TurnManager.turn_map_keys:
+		TurnManager.turn_map.get(key)
 
 
 func _ready() -> void:
@@ -33,6 +34,13 @@ func _ready() -> void:
 	deal_community()
 	deal_community()
 	deal_community()
+	for key in TurnManager.turn_map_keys:
+		var community_cards: Array = community.get_children()
+		var player_hand: Array = TurnManager.turn_map.get(key).get_hand()
+		var hand_to_score: Array = community_cards + player_hand
+		print("Scoring " + str(TurnManager.turn_map.get(key).player_name))
+		print("A total of " + str(hand_to_score.size()) + " cards")
+		ScoreManager.score_hand(hand_to_score)
 
 
 func generate_card_list() -> void:
@@ -48,11 +56,11 @@ func deal_community() -> void:
 		var community_cards: Array = deal_cards(3)
 		community.display_cards(community_cards)
 		cards_dealt_to_community += 3
-	if cards_dealt_to_community == 3:
+	elif cards_dealt_to_community == 3:
 		var community_cards: Array = deal_cards(1)
 		community.display_cards(community_cards)
 		cards_dealt_to_community += 1
-	if cards_dealt_to_community == 4:
+	elif cards_dealt_to_community == 4:
 		var community_cards: Array = deal_cards(1)
 		community.display_cards(community_cards)
 		cards_dealt_to_community += 1
