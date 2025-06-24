@@ -23,6 +23,7 @@ TurnManager="*res://autoload/TurnManager.gd"
 PlayerIconManager="*res://autoload/PlayerIconManager.gd"
 ScoreManager="*res://autoload/ScoreManager.gd"
 BetManager="*res://autoload/BetManager.gd"
+CpuPlayerManager="*res://autoload/CPUPlayerManager.gd"
 
 [display]
 
