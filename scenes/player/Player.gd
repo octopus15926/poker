@@ -3,6 +3,7 @@ extends Node2D
 
 
 signal player_selected
+signal turn_completed
 
 
 enum PlayerType { CPU, HUMAN }
@@ -17,7 +18,7 @@ var sit_button: Button
 var hand: Node
 var player_name: StringName = &"Banana"
 var player_type: PlayerType = PlayerType.HUMAN
-var chips: int = 10000
+var chips: int = 100
 var chip_selection_wheel: PackedScene = preload("res://scenes/ui/chip_selection_wheel/ChipSelectionWheel.tscn")
 var chip: PackedScene = preload("res://scenes/chip/Chip.tscn")
 var chip_wheel_open: bool = false
@@ -53,16 +54,6 @@ func custom_init(i_player_name: StringName, i_player_type: StringName) -> void:
 	sit_button = $SitButton
 	sit_button.pressed.connect(func(): _on_sit_button_pressed())
 	hand = $Hand
-
-
-#func _input(event) -> void:
-	#if player_type == PlayerType.HUMAN and !chip_wheel_open and event.is_action_pressed("right_click"):
-		#var chip_wheel = chip_selection_wheel.instantiate()
-		#chip_wheel.position = to_local(get_global_mouse_position())
-		#add_child(chip_wheel)
-		#chip_wheel.connect("chip_selected", func(value: int): _on_chip_wheel_selected(value))
-		#chip_wheel.connect("tree_exited", func(): _on_chip_wheel_exited())
-		#chip_wheel_open = true
 
 
 func pick_up_cards(cards: Array[Card]) -> void:
@@ -111,6 +102,10 @@ func get_player_type_stringname() -> StringName:
 	if player_type == PlayerType.CPU:
 		return &"CPU"
 	return &"Human"
+
+
+func finish_turn() -> void:
+	emit_signal("turn_completed")
 
 
 func _on_chip_wheel_selected(value: int) -> void:
