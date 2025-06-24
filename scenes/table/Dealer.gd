@@ -2,20 +2,11 @@ extends Node
 
 
 @onready var community: Node2D = $/root/Table/Community
+@onready var game_ui: CanvasLayer = $/root/Table/GameUI
 
 var card_list: Array [CardData]
 var card_scene: PackedScene = preload("res://scenes/card/Card.tscn")
 var cards_dealt_to_community: int = 0
-# deal 2 cards to each player
-# take bets
-# deal flop (3 community cards)
-# take bets
-# deal turn (1 community card)
-# take bets
-# deal river (1 community card)
-# take bets
-# score hands
-# give rewards
 
 
 func run_a_game_of_poker() -> void:
@@ -31,6 +22,7 @@ func _ready() -> void:
 	generate_card_list()
 	card_list.shuffle()
 	iterate_through_players_and_deal_them_cards()
+	game_ui.update_current_player_banner()
 	deal_community()
 	deal_community()
 	deal_community()
