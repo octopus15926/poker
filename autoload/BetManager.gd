@@ -1,11 +1,11 @@
 extends Node
 
 
+# TODO decide if bet pool is even necessary
 var bet_pool: Array [Bet]
 var winnings: int = 0
 
 
-# TODO decide if bet pool is even necessary
 func take_bet(player: Player, bet_amount: int) -> void:
 	if bet_amount > player.chips:
 		bet_amount = min(bet_amount, player.chips)
