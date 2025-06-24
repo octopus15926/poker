@@ -5,6 +5,7 @@ var rng = RandomNumberGenerator.new()
 var turn_map: Dictionary = {}
 var turn_map_keys: Array
 var current_player
+var first_player
 var current_key_position: int = 0
 
 
@@ -19,6 +20,7 @@ func set_turn_order(players: Array) -> void:
 	print(turn_map_keys)
 	print(turn_map)
 	set_current_player()
+	first_player = current_player
 
 
 func roll_for_turn_order() -> int:
