@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=4 uid="uid://gii4vx1why54"]
+[gd_scene load_steps=13 format=4 uid="uid://gii4vx1why54"]
 
 [ext_resource type="Script" uid="uid://8b4yxywaupdc" path="res://scenes/table/Table.gd" id="1_2qbrq"]
+[ext_resource type="PackedScene" uid="uid://dfqm2vntsyf0p" path="res://scenes/ui/game_ui.tscn" id="2_88bpn"]
 [ext_resource type="Texture2D" uid="uid://dclwan3we4nrc" path="res://assets/tilemap/table_tilemap.png" id="2_il6sf"]
 [ext_resource type="PackedScene" uid="uid://bhth8isxoyqen" path="res://scenes/cursor/cursor.tscn" id="2_oeslb"]
 [ext_resource type="Script" uid="uid://dc20bumlbbn73" path="res://scenes/table/Community.gd" id="5_11trc"]
@@ -43,6 +44,8 @@ sources/3 = SubResource("TileSetAtlasSource_5l6oy")
 
 [node name="Table" type="Node"]
 script = ExtResource("1_2qbrq")
+
+[node name="GameUI" parent="." instance=ExtResource("2_88bpn")]
 
 [node name="GameCamera" type="Camera2D" parent="."]
 anchor_mode = 0
