@@ -55,14 +55,14 @@ func custom_init(i_player_name: StringName, i_player_type: StringName) -> void:
 	hand = $Hand
 
 
-func _input(event) -> void:
-	if player_type == PlayerType.HUMAN and !chip_wheel_open and event.is_action_pressed("right_click"):
-		var chip_wheel = chip_selection_wheel.instantiate()
-		chip_wheel.position = to_local(get_global_mouse_position())
-		add_child(chip_wheel)
-		chip_wheel.connect("chip_selected", func(value: int): _on_chip_wheel_selected(value))
-		chip_wheel.connect("tree_exited", func(): _on_chip_wheel_exited())
-		chip_wheel_open = true
+#func _input(event) -> void:
+	#if player_type == PlayerType.HUMAN and !chip_wheel_open and event.is_action_pressed("right_click"):
+		#var chip_wheel = chip_selection_wheel.instantiate()
+		#chip_wheel.position = to_local(get_global_mouse_position())
+		#add_child(chip_wheel)
+		#chip_wheel.connect("chip_selected", func(value: int): _on_chip_wheel_selected(value))
+		#chip_wheel.connect("tree_exited", func(): _on_chip_wheel_exited())
+		#chip_wheel_open = true
 
 
 func pick_up_cards(cards: Array[Card]) -> void:
@@ -105,6 +105,12 @@ func get_hand() -> Array:
 func add_community_to_hand(community_cards: Array) -> void:
 	for card in community_cards:
 		hand.add_child(card)
+
+
+func get_player_type_stringname() -> StringName:
+	if player_type == PlayerType.CPU:
+		return &"CPU"
+	return &"Human"
 
 
 func _on_chip_wheel_selected(value: int) -> void:
