@@ -2,6 +2,7 @@ extends Node
 
 
 signal player_selected
+signal player_ended_turn
 
 
 # NOTE: Temporary const
@@ -24,6 +25,7 @@ func create_players(_number_of_players: int = 4) -> void:
 		new_player.custom_init(player_name, "CPU")
 		players.append(new_player)
 		new_player.player_selected.connect(func(): _on_player_selected())
+		new_player.turn_completed.connect(func(): _on_turn_completed())
 	print(players)
 	TurnManager.set_turn_order(players)
 
@@ -48,3 +50,8 @@ func _on_player_selected() -> void:
 	for key in TurnManager.turn_map_keys:
 		TurnManager.turn_map.get(key).disable_sit_button()
 	emit_signal("player_selected")
+
+
+func _on_turn_completed() -> void:
+	TurnManager.move_to_next_player_turn()
+	emit_signal("player_ended_turn")

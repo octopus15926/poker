@@ -12,7 +12,8 @@ func _ready() -> void:
 
 func _on_submit_bet_pressed() -> void:
 	print(str(enter_bet.text) + " has been bet")
-	#BetManager.take_bet(TurnManager.current_player, int(enter_bet.text))
+	BetManager.take_bet(TurnManager.current_player, int(enter_bet.text))
+	TurnManager.current_player.finish_turn()
 
 
 func _on_text_changed(new_text: String) -> void:
