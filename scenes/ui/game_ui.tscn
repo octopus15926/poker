@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://dfqm2vntsyf0p"]
+
+[ext_resource type="Script" uid="uid://bov2mu3y0xtfj" path="res://scenes/ui/GameUI.gd" id="1_bma8u"]
+[ext_resource type="Script" uid="uid://dlfre7qq6qfxx" path="res://scenes/ui/CurrentPlayerTurn.gd" id="2_fct72"]
+[ext_resource type="Script" uid="uid://7eem74t52x4f" path="res://scenes/ui/CurrentBet.gd" id="2_ru5ln"]
+[ext_resource type="Script" uid="uid://bvukyq6224lqt" path="res://scenes/ui/Bet.gd" id="3_ru5ln"]
+
+[node name="GameUI" type="CanvasLayer"]
+script = ExtResource("1_bma8u")
+
+[node name="CurrentBet" type="PanelContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ru5ln")
+
+[node name="CenterContainer" type="CenterContainer" parent="CurrentBet"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CurrentBet/CenterContainer"]
+layout_mode = 2
+text = "$0"
+
+[node name="CurrentPlayerTurn" type="PanelContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+script = ExtResource("2_fct72")
+
+[node name="CenterContainer" type="CenterContainer" parent="CurrentPlayerTurn"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CurrentPlayerTurn/CenterContainer"]
+layout_mode = 2
+text = "Cherry's Turn"
+
+[node name="Bet" type="PanelContainer" parent="."]
+visible = false
+offset_left = 236.0
+offset_top = 180.0
+offset_right = 424.0
+offset_bottom = 256.0
+script = ExtResource("3_ru5ln")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bet"]
+layout_mode = 2
+
+[node name="EnterBet" type="LineEdit" parent="Bet/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Bet"
+
+[node name="SubmitBet" type="Button" parent="Bet/VBoxContainer"]
+layout_mode = 2
+text = "submit"
