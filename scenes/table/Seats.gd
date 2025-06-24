@@ -1,6 +1,9 @@
 extends Node
 
 
+signal player_selected
+
+
 # NOTE: Temporary const
 const player_names: Array [StringName] = [&"Bananas", &"Cherries", &"Grapes", &"Orange"]
 var available_seats: Array [Node]
@@ -44,3 +47,4 @@ func seat_players() -> void:
 func _on_player_selected() -> void:
 	for key in TurnManager.turn_map_keys:
 		TurnManager.turn_map.get(key).disable_sit_button()
+	emit_signal("player_selected")
