@@ -9,13 +9,12 @@ var card_scene: PackedScene = preload("res://scenes/card/Card.tscn")
 var cards_dealt_to_community: int = 0
 
 
-func run_a_game_of_poker() -> void:
-	pass
-
-
 func take_bets() -> void:
-	for key in TurnManager.turn_map_keys:
-		TurnManager.turn_map.get(key)
+	if TurnManager.current_player.get_player_type_stringname() == &"Human":
+		get_parent().game_ui.show_bet_entry()
+	else:
+		CpuPlayerManager.make_bet(TurnManager.current_player)
+	
 
 
 func _ready() -> void:
@@ -23,16 +22,14 @@ func _ready() -> void:
 	card_list.shuffle()
 	iterate_through_players_and_deal_them_cards()
 	game_ui.update_current_player_banner()
-	deal_community()
-	deal_community()
-	deal_community()
+
+
+func score_hands() -> void:
 	for key in TurnManager.turn_map_keys:
 		var player: Player = TurnManager.turn_map.get(key)
 		var community_cards: Array = community.get_children()
 		var player_hand: Array = TurnManager.turn_map.get(key).get_hand()
 		var hand_to_score: Array = community_cards + player_hand
-		print("Scoring " + str(TurnManager.turn_map.get(key).player_name))
-		print("A total of " + str(hand_to_score.size()) + " cards")
 		ScoreManager.score_hand(hand_to_score, player)
 	var winners: Array = ScoreManager.get_winning_hand()
 	for winner in winners:
