@@ -83,3 +83,4 @@ position = Vector2(192, 576)
 script = ExtResource("5_inia7")
 
 [node name="Cursor" parent="." instance=ExtResource("2_oeslb")]
+z_index = 4096
