@@ -21,10 +21,10 @@ func on_player_selected() -> void:
 
 
 func on_player_ended_turn() -> void:
+	TurnManager.move_to_next_player_turn()
 	if TurnManager.current_player == TurnManager.first_player:
 		dealer.deal_community()
-	else:
-		dealer.take_bets()
+	dealer.take_bets()
 	game_ui.update_bet_pool()
 	game_ui.update_current_player_banner()
 	game_ui.hide_bet_entry()
