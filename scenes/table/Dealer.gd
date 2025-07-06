@@ -69,7 +69,6 @@ func deal_cards(number_of_cards: int) -> Array:
 
 
 func deal_player_hand(player: Player, number_of_cards: int) -> void:
-	print("dealing " + str(number_of_cards) + " to " + player.player_name)
 	player.pick_up_cards(deal_cards(number_of_cards))
 
 

@@ -26,24 +26,20 @@ func create_players(_number_of_players: int = 4) -> void:
 		players.append(new_player)
 		new_player.player_selected.connect(func(): _on_player_selected())
 		new_player.turn_completed.connect(func(): _on_turn_completed())
-	print(players)
 	TurnManager.set_turn_order(players)
 
 
 func seat_players() -> void:
 	var player_keys = TurnManager.turn_map.keys()
 	player_keys.reverse()
-	print(player_keys)
 	for seat in available_seats:
 		if seat.get_children().size() == 0:
 			var target_key = player_keys.pop_back()
-			print(str(player_keys) + " left")
 			var new_player: Player = TurnManager.turn_map.get(target_key)
 			if new_player:
 				seat.add_child(new_player)
 		else:
 			continue
-	print("player keys after seating: " + str(player_keys))
 
 
 func _on_player_selected() -> void:

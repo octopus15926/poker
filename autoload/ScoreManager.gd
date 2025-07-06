@@ -37,36 +37,27 @@ var player_hand_map: Dictionary = {}
 
 
 func check_for_flush(cards: Array) -> Hands:
-	print("Checking for flush")
 	var clubs: Array = []
 	var diamonds: Array = []
 	var hearts: Array = []
 	var spades: Array = []
 	for card in cards:
 		if card.suit == &"Clubs":
-			print("Found club")
 			clubs.append(card)
 		elif card.suit == &"Diamonds":
-			print("Found diamond")
 			diamonds.append(card)
 		elif card.suit == &"Hearts":
-			print("found heart")
 			hearts.append(card)
 		elif card.suit == &"Spades":
-			print("found spade")
 			spades.append(card)
 	var card_groups: Array = [clubs, diamonds, hearts, spades]
 	for group in card_groups:
 		if group.size() >= 5:
 			if check_for_royal_flush(cards):
-				print("Found royal flush")
 				return Hands.ROYAL_FLUSH
 			if check_for_straight(group):
-				print("found straight flush")
 				return Hands.STRAIGHT_FLUSH
-			print("found regular flush")
 			return Hands.FLUSH
-	print("no flush found")
 	if clubs.size() > 1:
 		for c in clubs:
 			print(c.card_id)
@@ -83,70 +74,49 @@ func check_for_flush(cards: Array) -> Hands:
 
 
 func check_for_royal_flush(cards: Array) -> bool:
-	print("Checking for royal flush")
 	var ranks: Array
 	for card in cards:
 		ranks.append(card.rank)
 	if ROYAL_FLUSH in ranks:
-		print("Found royal flush in " + str(ranks))
 		return true
-	print("No royal flush found")
 	return false
 
 
 func check_for_straight(cards: Array) -> bool:
 	var card_ranks = get_sorted_ranks(cards)
-	print("Card ranks: " + str(card_ranks))
 	var sequential_numbers: Array
-	print("checking ranks")
 	for i in range(1, card_ranks.size()):
 		if card_ranks[i] == card_ranks[i - 1] + 1:
-			print(str(card_ranks[i]) + " is equal to " + str(card_ranks[i - 1] + 1))
-			print("So, a sequential number has been found")
 			sequential_numbers.append(card_ranks[i])
 	if sequential_numbers.size() >= 5:
-		print("5 sequential numbers found - straight!")
 		return true
 	elif ACE_LOW_STRAIGHT in card_ranks:
-		print("ace low straight found")
 		return true
-	print("Not enough sequential numbers for a straight in " + str(card_ranks))
 	return false
 
 
 func read_hand(cards: Array) -> Hands:
-	print("Reading hand")
 	var hand_map: Dictionary = {}
-	print("Mapping cards")
 	for card in cards:
 		if !hand_map.has(card.rank):
-			print("First instance of " + str(card.rank))
 			hand_map[card.rank] = 1
 		else:
-			print("additional instance of " + str(card.rank))
 			hand_map[card.rank] += 1
 	var pair: int = 0
 	var three_of_a_kind: int = 0
 	for rank in hand_map:
 		if hand_map[rank] == 4:
-			print("Four of a kind detected!")
 			return Hands.FOUR_OF_A_KIND
 		elif hand_map[rank] == 3:
-			print("Three of a kind detected!")
 			three_of_a_kind += 1
 		elif hand_map[rank] == 2:
-			print("Pair detected!")
 			pair += 1
 	if pair == 1 and three_of_a_kind == 1:
-		print("Full house detected")
 		return Hands.FULL_HOUSE
 	elif pair >= 2:
-		print("Two pair detected")
 		return Hands.TWO_PAIR
 	elif pair == 1:
-		print("Final score is a Pair!")
 		return Hands.PAIR
-	print("Sorry, just a high card, kid.")
 	return Hands.HIGH_CARD
 
 
@@ -159,7 +129,6 @@ func get_sorted_ranks(cards: Array) -> Array:
 
 
 func score_hand(cards: Array, player: Player) -> void:
-	print("\nScoring hand!")
 	var score: Hands = Hands.NONE
 	score = check_for_flush(cards)
 	if score == Hands.NONE:
@@ -167,7 +136,6 @@ func score_hand(cards: Array, player: Player) -> void:
 			score = Hands.STRAIGHT
 			return
 		score = read_hand(cards)
-	print("\n" + player.player_name + " scored: " + str(HAND_RANKINGS.get(score)) + "\n")
 	map_hand_score(HAND_RANKINGS.get(score), cards, player)
 
 
@@ -191,16 +159,12 @@ func get_winning_hand() -> Array:
 func convert_rank_stringname_to_int(rank: StringName) -> int:
 	match rank:
 			&"A":
-				print("Appending ace - 14")
 				return 14
 			&"K":
-				print("Appending king - 13")
 				return 13
 			&"Q":
-				print("appending Queen - 12")
 				return 12
 			&"J":
-				print("appending jack - 11")
 				return 11
 			_:
 				return int(rank)
@@ -209,17 +173,12 @@ func convert_rank_stringname_to_int(rank: StringName) -> int:
 func convert_rank_int_to_stringname(integer: int) -> StringName:
 	match integer:
 			14:
-				print("Appending A")
 				return &"A"
 			13:
-				print("appending K")
 				return &"K"
 			12:
-				print("appending Q")
 				return &"Q"
 			11:
-				print("appending J")
 				return &"J"
 			_:
-				print(str(integer) + " doesn't need to change")
 				return StringName(str(integer))
